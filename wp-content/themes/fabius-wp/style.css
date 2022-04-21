@@ -1,0 +1,1609 @@
+/*
+Theme Name: Fabius WP
+Theme URI: https://demo.cocobasic.com/fabius-wp/
+Description: One page resume / cv / personal WordPress theme. Online documentation you can find here - https://demo.cocobasic.com/documentation/MANUAL-FabiusWP.pdf
+Author: CocoBasic
+Author URI:  https://www.cocobasic.com
+License: GNU General Public License v2.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Version: 1.0
+Tags: grid-layout, four-columns, custom-colors, featured-images, threaded-comments, translation-ready, theme-options
+Text Domain: fabius-wp
+*/
+
+
+/*------------------------------------------------------------------
+[Table of contents]
+1. Global CSS       
+2. Menu Holder CSS
+    2.1 Menu CSS    
+3. Blog Page CSS
+4. Single Post CSS
+5. Comments CSS
+6. Contact Page CSS
+7. Archive CSS / Search CSS / 404 Page CSS / Attachment Page
+8. Footer CSS
+9. Footer Widgets CSS
+10. Responsive CSS
+-------------------------------------------------------------------*/
+
+
+/* ===================================
+    1. Global CSS
+====================================== */
+
+*, 
+::after, 
+::before {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 400;
+    color: #E6E6F0;
+    background-color: #323238;
+    overflow-x: hidden;
+}
+
+body a {
+    text-decoration: none;
+    color: #6DB363;
+    transition: color .3s linear;
+}
+
+body h1 a,
+body h2 a,
+body h3 a,
+body h4 a,
+body h5 a,
+body h6 a {
+    color: #E6E6F0;
+}
+
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+    color: #6DB363;
+}
+
+body img {
+    max-width: 100%;    
+    height: auto;
+    display: block;
+}
+
+.doc-loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    background-color: #25252E;
+}
+
+.doc-loader img {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50%;    
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+p {
+    margin-bottom: 30px;
+}
+
+strong {
+    font-weight: 600;
+}
+
+#content {    
+    max-width: calc(100% - 20px);
+    margin: 0 auto;
+}
+
+.content-holder {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.blog .content-holder {
+    padding-bottom: 100px;
+}
+
+.content-960 {
+    width: 960px;
+    max-width: 100%;
+    transform: translateX(-100px);
+}
+
+.content-680 {
+    width: 680px;
+    max-width: 100%;
+}
+
+.content-570 {
+    width: 570px;
+    max-width: 100%;
+}
+
+h1.entry-title.page-title {
+    padding-top: 0;
+    padding-bottom: 30px;
+}
+
+.section-info {
+    font-size: 22px;
+    line-height: 35px;
+}
+
+.animate {
+    opacity: 0;
+    transition: .5s transform ease-in, .5s opacity ease-in;
+    -ms-transform: translate(0px,70px);
+    -webkit-transform: translate(0px,70px);
+    transform: translate(0px,70px); 
+}
+
+.animate.show-it {
+    opacity: 1;
+    -ms-transform: translate(0px,0px); 
+    -webkit-transform: translate(0px,0px);
+    transform: translate(0px,0px);  
+}
+
+
+/* ===================================
+    2. Menu Holder CSS
+====================================== */
+
+.header-holder {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 230px;
+    z-index: 2;
+    overflow: auto;
+    opacity: 0;
+    padding: 50px 0 30px 40px;
+    transition: opacity 1s, transform 1.5s;
+}
+
+.all-loaded .header-holder {
+    transform: translateX(-50px);
+    opacity: 1;
+}
+
+.admin-bar .header-holder,
+.admin-bar .toggle-holder {
+    top: 32px;
+}
+
+.header-wrapper {
+    position: relative;
+}
+
+.toggle-holder {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    padding: 0;
+    background-color: #25252e;
+    width: 100%;
+    height: 65px;
+}
+
+.mobile-logo {
+    display: inline-block;
+}
+
+.mobile-logo img {
+    width: 65px;
+}
+
+#toggle {
+    height: 23px;
+    width: 25px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    left: auto;
+}
+
+#toggle:hover {
+    cursor: pointer;
+}
+
+#toggle:before,
+#toggle:after {
+    content: '';
+    height: 3px;
+    width: 100%;
+    position: absolute;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transition: -webkit-transform 0.25s;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+    top: 10px;
+    background-color: #E6E6F0;
+}
+
+#toggle:before {
+    -webkit-transform: translate3d(0, -8px, 0);
+    transform: translate3d(0, -8px, 0px);
+}
+
+#toggle:hover:before {
+    -webkit-transform: translate3d(0, -9px, 0);
+    transform: translate3d(0, -9px, 0px);
+}
+
+#toggle.on:before {
+    -webkit-transform: rotate3d(0, 0, 1, 45deg) translate3d(0, 0, 0);
+    transform: rotate3d(0, 0, 1, 45deg) translate3d(0, 0, 0);
+    margin-left: 0;
+    width: 26px;
+}
+
+#toggle:after {
+    -webkit-transform: translate3d(0, 8px, 0);
+    transform: translate3d(0, 8px, 0);
+}
+
+#toggle:hover:after {
+    -webkit-transform: translate3d(0, 9px, 0);
+    transform: translate3d(0, 9px, 0);
+}
+
+#toggle.on:after {
+    -webkit-transform: rotate3d(0, 0, 1, -45deg);
+    transform: rotate3d(0, 0, 1, -45deg);
+    width: 26px;
+}
+
+#toggle .menu-line {
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+    top: 10px;
+    background-color: #E6E6F0;
+}
+
+#toggle.on .menu-line {
+    opacity: 0;
+}
+
+.header-logo img {
+    width: 140px;
+}
+
+.site-description {
+    line-height: 130%;
+}
+
+.menu-social {
+    position: fixed;
+    bottom: 80px;
+}
+
+.menu-social a {
+    font-size: 12px;
+    letter-spacing: 5px;
+    margin-right: 25px;
+}
+
+.menu-social a:last-of-type {
+    margin-right: 0;
+}
+
+
+/* ===================================
+    2.1 Menu CSS
+====================================== */
+
+.menu-holder {
+    margin-top: 50px;
+}
+
+.main-menu.sm-clean {
+    background-color: transparent;
+    display: inline-block;
+}
+
+.sm ul {
+    padding-left: 10px;
+}
+
+.sm-clean a {
+    position: relative;
+}
+
+body .sm-clean a {
+    color: #E6E6F0;
+}
+
+body .sm-clean a,
+body .sm-clean a:hover, 
+body .sm-clean a:focus, 
+body .sm-clean a:active {
+    padding: 5px 0;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 500;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+.sm-clean li a:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background-color: #6db363;
+    transition: width .3s;
+    position: absolute;
+    left: 0;
+    bottom: 7px;
+    z-index: -1;
+}
+
+.sm-clean .current a:after, 
+.sm-clean a:hover:after, 
+.sm-clean ul a:hover:after,
+.sm-clean .sub-menu li a:hover:after, 
+.sm-clean .sub-menu li a.current:after, 
+.sm-clean .children li a:hover:after, 
+.sm-clean .children li a.current:after,
+.sm-clean .has-submenu.current:after {
+    width: 100%;
+}
+
+.sm-clean a span.sub-arrow {
+    color: #6db363;
+    width: 30px;
+    left: -27px;
+    margin-top: -16px;
+}
+
+.sm-clean a span.sub-arrow:before {
+    display: block;
+    content: '+';    
+}
+
+body .sm-clean ul a,
+body .sm-clean ul a:hover, 
+body .sm-clean ul a:focus, 
+body .sm-clean ul a:active {    
+    font-size: 12px;
+    line-height: 22px;    
+    font-weight: 400;
+}
+
+
+/* ===================================
+    3. Blog Page CSS
+====================================== */
+
+.blog-holder > article {
+    margin-bottom: 100px;
+}
+
+.blog .blog-holder > article:last-of-type {
+    margin-bottom: 0;
+}
+
+.blog-item-holder .entry-holder {
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
+
+.blog-holder .post-thumbnail a {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.blog-holder .post-thumbnail img {
+    transition: transform .3s;
+}
+
+.blog-holder .post-thumbnail img:hover {
+    transform: scale(1.1);
+}
+
+.blog-item-holder h2.entry-title {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 120%;
+    padding: 0;
+    word-break: break-word;
+    margin-top: 5px;
+    position: relative;
+    width: 680px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.entry-info {
+    list-style: none;
+    padding: 0;
+    margin: 25px auto 20px auto;
+    display: inline-flex;
+    max-width: 95%;
+}
+
+.entry-info li {
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.entry-info > li + li {
+    margin-left: 25px;
+}
+
+ul.cat-links {
+    padding: 0;
+    list-style: none;
+}
+
+ul.cat-links > li {
+    margin-bottom: 5px;
+    display: inline-block;
+    width: auto;
+}
+
+ul.cat-links > li:last-child {
+    margin-bottom: 0;
+}
+
+ul.cat-links > li:after {
+    content: ",";
+    margin-right: 5px;
+}
+
+ul.cat-links > li:last-child:after {
+    display: none;
+}
+
+.more-posts-index-holder {
+    text-align: center;
+    min-height: 1px;
+    margin-top: 85px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.more-posts, 
+.no-more-posts, 
+.more-posts-loading {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+}
+
+.no-more-posts:hover, 
+.more-posts-loading:hover {
+    opacity: 0.8 !important;
+}
+
+.more-posts {
+    cursor: pointer;
+    transition: .35s ease-out;
+}
+
+.more-posts:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    width: calc(100% - 3px);
+    transition: .35s ease-out;
+    background-color: #E6E6F0;
+}
+
+.more-posts:hover {
+    color: #6db363;
+}
+
+.more-posts:hover:before {
+    background-color: #6db363;
+}
+
+.more-posts:hover:before {
+    width: 10px;
+}
+
+.more-posts {
+    cursor: pointer;   
+}
+
+.more-posts-loading, 
+.no-more-posts {
+    display: none;
+    cursor: auto;   
+}
+
+.more-posts-index-holder.scroll .more-posts, 
+.more-posts-index-holder.scroll .no-more-posts {
+    display: none !important;    
+}
+
+
+/* ===================================
+    4. Single Post CSS
+====================================== */
+
+.single-post .content-holder {
+    padding-bottom: 1px;
+}
+
+.single-post h1.entry-title {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 120%;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    padding: 0;
+    margin: 0 auto 5px;
+    width: 680px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.single-post .attachment-post-thumbnail {
+    margin: 0 auto 35px;
+}
+
+.single-post .entry-info-holder {
+    text-align: center;
+}
+
+.single-post .entry-info {    
+    margin: 20px auto 40px auto;
+}
+
+.single-post .entry-content {
+    width: 680px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.tags-holder {
+    margin: 30px 0;
+    display: inline-block;
+}
+
+body .tags-holder a  {
+    border: 2px solid #6db363;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 5px 17px 5px 20px;
+    font-size: 10px;
+    text-transform: uppercase;
+    background-color: #6db363;
+    transition: all .3s ease;
+    letter-spacing: 3px;
+    font-weight: 500;
+}
+
+.tags-holder a:last-of-type {
+    margin-right: 0;
+}
+
+.tags-holder a:hover {
+    background-color: transparent !important;
+    color: #6db363;
+}
+
+.wp-link-pages {
+    clear: both;
+}
+
+.wp-link-pages > * { 
+    margin: 0 5px;
+    font-size: 16px;
+    min-width: 30px;
+    min-height: 30px;
+    display: inline-block;
+    text-align: center;
+}
+
+.wp-link-pages > span {
+    padding: 1px 4px;
+    background-color: #25252e;
+}
+
+.single .nav-links {
+    margin: 70px auto;
+    position: relative;
+    width: 680px;
+    max-width: 100%;
+    line-height: 100%;
+}
+
+.single .nav-previous {
+    display: inline-block;
+    text-align: left;
+    float: left;
+    width: 44%;
+}
+
+.single .nav-next {
+    display: inline-block;
+    float: right;
+    width: 44%;
+    text-align: right;
+}
+
+.nav-links p {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.nav-previous a, 
+.nav-next a {
+    font-size: 17px;
+    line-height: 1.3;
+    font-weight: 600;
+    word-break: break-word;    
+}
+
+.single-post .nav-next a {
+    float: right;
+}
+
+.cocobasic-comment-form #sidebar {
+    padding-top: 60px;
+}
+
+
+/* ===================================
+    5. Comments CSS
+====================================== */
+
+#comments {
+    margin-bottom: 25px;
+}
+
+#comments-wrapper > div:first-of-type {
+    padding: 50px 50px 0;
+    background-color: #25252e;
+}
+
+.comment-form-holder a {
+    color: #E6E6F0;
+}
+
+.comment-form-holder a:hover {
+    color: #6db363;
+}
+
+ol.comments-list-holder {
+    margin: 0;
+}
+
+ol.comments-list-holder > li:last-child {
+    padding-bottom: 15px;
+}
+
+.comments-holder ol.comments-list-holder, 
+.comments-holder ul.children {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.comments-holder ul.children {
+    position: relative;
+}
+
+.comments-holder ul.children:before {
+    content: "";
+    width: 2px;
+    height: 50px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 34px;
+    top: 10px;
+    left: 3.75em;
+}
+
+.vcard img {
+    border-radius: 100px;
+}
+
+.comments-holder .comment-author-date-replay-holder {
+    margin-left: 95px;
+    padding-top: 8px;
+    padding-left: 0;
+    line-height: 160%;
+}
+
+.comments-holder .pingback,
+.comments-holder .trackback {
+    padding-bottom: 60px;
+}
+
+.comments-holder .pingback .comment-author-date-replay-holder, 
+.comments-holder .pingback .comment-text,
+.comments-holder .trackback .comment-author-date-replay-holder, 
+.comments-holder .trackback .comment-text {
+    margin-left: 0;
+}
+
+ul.comment-author-date-replay-holder li {
+    display: inline-block;
+}
+
+ul.comment-author-date-replay-holder li.comment-author {
+    max-width: 90%;
+    font-weight: 600;
+}
+
+.comment-date {
+    margin-left: 95px;
+    font-size: 11px;
+    margin-bottom: 0;
+}
+
+.trackback .comment-date,
+.pingback .comment-date {
+    margin-left: 0;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.comment-reply {
+    float: right;
+}
+
+a.comment-reply-link {
+    text-decoration: none;
+    position: relative;
+}
+
+.comments-number {
+    font-size: 24px;
+    line-height: 25px;    
+    text-align: center;
+}
+
+.comment-content-holder {
+    margin-left: 50px;
+}
+
+.comment-content-holder {
+    width: 470px;
+}
+
+.comment-time-separator {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.comment-text {
+    clear: both;
+    display: block;
+    margin-left: 95px;
+    line-height: 100%;
+}
+
+.comment-text p {
+    display: inline;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.replay-at-author {    
+    margin-right: 8px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    z-index: 0;
+    text-transform: uppercase;
+}
+
+#reply-title {
+    font-size: 20px;
+    padding: 0;
+}
+
+#cancel-comment-reply-link {
+    font-size: 13px;
+    padding-left: 15px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#cancel-comment-reply-link:before {
+    content: "-";
+    padding-right: 5px;
+}
+
+.comment-time {
+    display: inline-block;
+    font-size: 14px;
+}
+
+.comment {
+    padding-bottom: 80px;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.children .comment {    
+    padding-top: 80px;
+    padding-bottom: 0;
+}
+
+.comment:last-child {
+    padding-bottom: 0;
+}
+
+.comments-list-holder .children > li {
+    padding-left: 1.75em;
+}
+
+.logged-in-as {
+    margin-bottom: 50px;
+    font-size: 13px;
+}
+
+.comment-form-holder > div:first-of-type {
+    background-color: #25252E;
+    padding: 50px;
+}
+
+#commentform #email, 
+#commentform #author, 
+#commentform #comment {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    color: #E6E6F0;
+    border: 0;
+    border-bottom: 2px solid;
+    font-size: 14px;
+    line-height: 30px;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 40px;
+    background-color: transparent;
+}
+
+.input-default-text {
+    font-size: 14px;
+    font-weight: 400;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .3s;
+    z-index: -1;
+}
+
+.input-default-text.has-content {
+    top: -20px;
+    font-size: 11px;
+}
+
+#commentform #email, 
+#commentform #author {
+    padding-bottom: 5px;
+}
+
+#commentform #email {
+    margin-bottom: 35px;
+}
+
+#commentform #comment {
+    height: 150px;
+}
+
+.form-submit {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.form-submit input[type=submit] {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    display: inline-block;
+    border: none;
+    text-align: left;
+    position: relative;
+    padding: 20px 0 0;
+    font-size: 11px;
+    letter-spacing: 2px;
+    line-height: 200%;
+    vertical-align: middle;
+    text-decoration: none;
+    background-color: transparent;
+    color: #E6E6F0;
+    width: 100%;
+    transition: color .3s ease;
+    cursor: pointer;
+}
+
+.form-submit:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: calc(100% - 3px);
+    transition: .35s ease-out;
+    background-color: #E6E6F0;
+}
+
+.form-submit input[type=submit]:hover {
+    color: #6db363;
+}
+
+.form-submit:hover:before {
+    background-color: #6db363;
+    width: 10px;
+}
+
+.comment-form-cookies-consent {    
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 35px;
+}
+
+.comment-form-cookies-consent input {
+    float: left;
+}
+
+.comment-form-cookies-consent:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+/* ===================================
+    6. Contact Page CSS
+====================================== */
+
+.wpcf7-form {
+    margin: -15px auto 0;
+    overflow: hidden;
+    padding-top: 15px;
+}
+
+.wpcf7-form p {
+    margin-bottom: 15px;
+    z-index: 0;
+}
+
+.wpcf7-form .input-default-text {
+    top: 8px;
+}
+
+.wpcf7-form input[type=text], 
+.wpcf7-form input[type=email], 
+.wpcf7-form textarea {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 400;
+    color: #E6E6F0;
+    background-color: transparent;
+    width: 100%;
+    height: 28px;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 2px solid;
+    padding-top: 0;
+    padding-bottom: 0px;
+    margin-bottom: 22px;
+    margin-top: 13px;
+    -webkit-box-sizing: initial;
+    box-sizing: initial;
+}
+
+.wpcf7-form textarea {
+    height: 150px;
+}
+
+.wpcf7-form input[type=submit] {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    display: inline-block;
+    border: none;
+    text-align: left;
+    position: relative;
+    padding: 20px 0 0;
+    font-size: 14px;
+    line-height: 30px;
+    letter-spacing: 3px;
+    vertical-align: middle;
+    text-decoration: none;
+    background-color: transparent;
+    color: #E6E6F0;
+    width: 100%;
+    transition: color .3s ease;
+    cursor: pointer;
+}
+
+.wpcf7-form .contact-submit-holder {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.contact-submit-holder:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    transition: .35s ease-out;
+    background-color: #E6E6F0;
+}
+
+.contact-submit-holder:hover input { 
+    color: #323238;
+}
+
+.contact-submit-holder:hover:before {
+    width: 10px;
+    background-color: #323238;
+}
+
+.wpcf7-form .input-default-text.has-content {
+    top: -9px;
+    font-size: 11px;
+    color: #323238;
+}
+
+span.wpcf7-not-valid-tip {
+    color: #e6e6f0;
+    font-size: 12px;
+    position: absolute;
+    top: -5px;
+    right: 0;
+    background-color: #323238;
+    padding: 0 5px;
+}    
+
+div.wpcf7-response-output {
+    color: #e6e6f0;
+    border-color: #323238 !important;
+    background-color: #323238;
+    margin: 0;
+    padding: 0.2em 1em;
+    font-size: 11px;
+    text-align: center;
+    border: 2px solid;
+    margin: 20px 0 0 !important;
+}
+
+[data-elementor-device-mode="mobile"] div.wpcf7-response-output {
+    position: initial;
+    margin: 2em 0.5em 1em !important;
+}
+
+span.wpcf7-list-item {
+    margin: 0;
+}
+
+div.wpcf7 .ajax-loader {
+    display: none !important;
+}
+
+
+/* ===================================
+    7. Archive CSS / Search CSS / 404 Page CSS / Attachment Page
+====================================== */
+
+.archive .navigation.pagination, 
+.search .navigation.pagination {
+    text-align: center;
+}
+
+.search .nav-links > *,
+.archive .nav-links > * {
+    margin: 0 5px;
+}
+
+.search .nav-links .current,
+.archive .nav-links .current {
+    padding: 5px 13px;
+    background-color: #25252e;
+}
+
+.archive-title {
+    margin-bottom: 90px;
+    text-align: center;
+    background-color: #25252e;
+    padding: 25px 70px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.archive .archive-title {
+    padding: 22px 70px 26px;
+}
+
+.archive-title h1 {
+    font-size: 18px;
+    font-weight: 400;
+    padding: 0;
+    display: inline;
+    transition: color .35s ease-out;
+}
+
+.archive-title h1 span {
+    position: relative;
+    font-weight: 700;
+}
+
+.archive-title h1 span:before {
+    content: '';
+    position: absolute;
+    bottom: -5px;    
+    height: 3px;
+    width: 100%;
+    background-color: #e6e6f0;
+    transition: .35s ease-out;
+}
+
+.search .archive-title h1:before {
+    display: none;
+}
+
+.search .archive-title h1 .search-text {
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.search .archive-title h1 .searched-text {
+    position: relative;
+    font-weight: 700;
+    overflow: hidden;
+}
+
+.search .archive-title h1 .searched-text:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #e6e6f0;
+    transition: .35s ease-out;
+}
+
+.search-no-results h2 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.error-text-help-first {
+    font-size: 36px;
+    line-height: 40px;
+    margin-top: 95px;
+}
+
+.error-text-help-second {
+    font-size: 26px;
+    line-height: 34px;
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+.error-text-404 {
+    color: #6db363;
+    font-weight: 700;
+    font-size: 350px;
+    line-height: 100%;
+}
+
+
+/* ===================================
+    8. Footer CSS
+====================================== */
+
+footer {
+    font-size: 13px;
+}
+
+footer a {
+    color: #E6E6F0;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: #6db363;   
+}
+
+.footer-content {
+    z-index: 1;
+    position: relative;
+}
+
+footer h4.widgettitle {
+    color: #6db363;
+}
+
+footer .widget_rss .rsswidget {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* ===================================
+    9. Footer Widgets CSS
+====================================== */
+
+.sidebar-wrapper {
+    width: 680px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+#sidebar {
+    padding-bottom: 20px;
+}
+
+#sidebar:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#sidebar p {
+    margin-bottom: 12px;
+}
+
+#sidebar > ul {
+    float: left;
+    width: 45%;
+}
+
+#sidebar #footer-sidebar-1 {
+    margin-right: 10%;
+}
+
+#sidebar .widget li {
+    margin-bottom: 10px;
+}
+
+#sidebar ul {
+    padding-left: 0;
+    margin: 0;
+    margin-bottom: 0;
+    list-style: none;
+    margin-top: 0;
+}
+
+#sidebar ul.children,
+#sidebar ul.sub-menu {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#sidebar .tagcloud a {
+    line-height: 160%;
+    display: inline-block;
+}
+
+h4.widgettitle {
+    font-size: 14px;
+    text-transform: uppercase;
+    padding-top: 0;
+    padding-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+#sidebar li.widget {
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+#sidebar li.widget:last-child {
+    margin-bottom: 0;
+}
+
+.search-field {
+    font-family: 'Poppins', sans-serif;
+    color: #E6E6F0;
+    padding: 0;
+    margin-top: -3px;
+    font-size: 14px;
+    line-height: 180%;
+    font-weight: 400;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid;
+    text-align: left;
+    transition: border 0.4s ease;
+    -webkit-appearance: none;
+}
+
+.search-field::-webkit-input-placeholder {
+    font-family: 'Poppins', sans-serif;  
+    color: #E6E6F0;  
+    padding: 5px 0;
+    font-size: 14px;
+    line-height: 180%;
+    font-weight: 400;
+    opacity: 1;
+    text-align: left;
+}
+
+.search-field:-ms-input-placeholder {
+    font-family: 'Poppins', sans-serif;  
+    color: #E6E6F0;  
+    padding: 5px 0;
+    font-size: 14px;
+    line-height: 180%;
+    font-weight: 400;
+    opacity: 1;
+    text-align: left;
+}
+
+.search-field::placeholder {
+    font-family: 'Poppins', sans-serif;    
+    color: #E6E6F0;
+    padding: 5px 0;
+    font-size: 14px;
+    line-height: 180%;
+    font-weight: 400;
+    opacity: 1;
+    text-align: left;
+}
+
+#sidebar .widget.widget_rss li {
+    margin-bottom: 30px;
+}
+
+.widget.widget_rss .rss-date {
+    display: block;
+    margin: 10px 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+
+/* ===================================
+    10. Responsive CSS
+====================================== */
+
+@media screen and (max-width: 1199px) {
+
+    .content-holder {
+        padding-top: 100px;
+        padding-bottom: 30px;
+    }
+
+    .content-960 {
+        transform: none;
+    }
+
+    .header-logo {
+        display: none;
+    }
+
+    .header-holder {
+        transform: translateX(100%) !important;
+        left: auto !important;
+        right: 0;
+        padding: 80px 30px 60px 50px;
+        overflow: auto;
+        height: 100%;
+        transition: .25s ease-in;
+        background-color: #25252e;
+    }
+
+    .open .header-holder {
+        transform: translateX(0px) !important;
+    }
+
+    .toggle-holder {
+        display: block;
+    }
+
+    .menu-holder {
+        margin-top: 20px;
+    }
+
+    .menu-social {
+        position: relative;
+        bottom: 0;
+        margin-top: 50px;
+    }
+
+}
+
+@media screen and (max-width: 1025px) {
+
+    .blog-item-holder .entry-holder {
+        display: block;
+    }
+
+    .more-posts-index-holder {
+        margin-top: 60px;
+    }       
+
+    .single .nav-links {
+        margin: 50px 0;
+    }        
+
+    .comments-holder .pingback,
+    .comments-holder .trackback {
+        padding-bottom: 30px;
+    } 
+
+    footer.content-960 {
+        width: calc(100% - 20px);
+    }
+
+}
+
+@media screen and (max-width: 782px) {
+
+    .admin-bar .toggle-holder {
+        transition: .25s ease-in;
+    }   
+
+    .admin-bar .toggle-holder,
+    .admin-bar .header-holder {
+        top: 46px;        
+    }    
+
+    .admin-bar.is-sticky .toggle-holder,
+    .admin-bar.is-sticky .header-holder {       
+        top: 0;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+
+    .blog-holder > article {
+        margin-bottom: 65px;
+    }    
+
+    .blog-item-holder.sticky {
+        width: 100%;
+        margin-left: 0;
+    }  
+
+    .archive-title {
+        margin-bottom: 50px;
+    }
+
+    .error-text-404 {
+        font-size: 90px;
+    }
+
+    .single .nav-previous, 
+    .single .nav-next {
+        display: block;
+        width: 95%;
+        text-align: center;
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .single .nav-previous a, 
+    .single .nav-next a {
+        float: none;
+    }
+
+    .single .nav-previous {    
+        padding-bottom: 40px;
+    }
+
+    .comment-form-holder > div:first-of-type {
+        padding: 25px;
+    }
+
+    #comments-wrapper > div:first-of-type {
+        padding: 25px 25px 0;
+    }
+
+    .comment {
+        padding-bottom: 50px;
+    }
+
+    .replay-at-author {
+        font-size: 14px;       
+    }
+
+    .comment-text p {
+        font-size: 14px;
+        line-height: 180%;
+    }
+
+    .single #sidebar,
+    #sidebar {
+        padding-top: 20px;
+    }      
+
+    #sidebar > ul {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+    }  
+
+    #sidebar #footer-sidebar-1 {
+        margin-right: 0;
+        margin-bottom: 50px;
+    }
+
+}
+
+@media screen and (max-width: 650px) {     
+
+    .single-post h1.entry-title, 
+    .blog-item-holder h2.entry-title, 
+    h1.entry-title.page-title {
+        font-size: 27px;
+        margin-bottom: 10px;
+    }     
+
+    .entry-info {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .entry-info > li + li {
+        margin-left: 0;
+        margin-top: 5px;
+    } 
+
+    blockquote.wp-block-quote {
+        font-size: 20px;
+    }
+
+    .comment-date {
+        font-size: 13px;
+    }      
+
+    .comments-list-holder .children > li {
+        padding-left: 0.75em;
+    }
+
+    .comments-holder ul.children:before {
+        left: 2.75em;
+    }
+
+}
